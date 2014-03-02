@@ -23,6 +23,7 @@ exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.
 		$hookFile = $hookFile + $cmd
 		sc $hookPath $hookFile
 	}
+	echo "Pre-commit hook installed!"
 }
 ```
 
@@ -41,7 +42,6 @@ task :putOnAHelmet do
     }
     sh "chmod +x .git/hooks/pre-commit"
 
-    # Done!
     puts 'pre-commit hook installed'
 end
 
