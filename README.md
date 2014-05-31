@@ -3,6 +3,12 @@ PutOnAHelmet
 
 Set of build script/tasks that you can use to easily run to install git pre-commit hooks for such things as running tests before your code is committed.
 
+- [Ruby - Rake](#rubyrake)
+- [PowerShell - Invoke-Build](#powershellInvokeBuild)
+- [PowerShell - PSake](#powershellPsake)
+
+
+<a name="rubyrake"/>
 ### Ruby [Rake](http://rake.rubyforge.org/)
 ```ruby
 
@@ -24,6 +30,7 @@ end
 
 
 
+<a name="powershellInvokeBuild"/>
 ### PowerShell [Invoke-Build](https://github.com/nightroman/Invoke-Build)
 
 ```powershell
@@ -48,6 +55,7 @@ exec powershell -NoProfile -command "Invoke-Build.ps1 Test"
 ```
 
 
+<a name="powershellPsake"/>
 ### PowerShell [PSake](https://github.com/psake/psake)
 ```powershell
 
