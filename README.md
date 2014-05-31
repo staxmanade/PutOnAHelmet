@@ -59,7 +59,7 @@ exec powershell -NoProfile -command "Invoke-Build.ps1 Test"
 ### PowerShell [PSake](https://github.com/psake/psake)
 ```powershell
 
-task putOnAHelmet -Description "Places a git pre-commit hook that runs the 'test' psake command before each commit. You can skip the pre-commit by typing "git commit -n ..." {
+task putOnAHelmet -Description "Places a git pre-commit hook that runs the 'test' psake command before each commit. You can skip the pre-commit by typing `"git commit -n ...`"" {
 	$cmd = '#!/bin/sh
 #***********
 exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.2.0.1\tools\psake.psm1; Invoke-Psake Test; exit !(\$psake.build_success); }"
