@@ -3,6 +3,50 @@ PutOnAHelmet
 
 Set of build script/tasks that you can use to easily run to install git pre-commit hooks for such things as running tests before your code is committed.
 
+### Ruby [Rake](http://rake.rubyforge.org/)
+```ruby
+
+desc 'Places a git pre-commit hook that runs the "rake test" command before each commit. You can skip the pre-commit by typing "git commit -n ...'
+task :putOnAHelmet do
+    fileContents = <<-eos
+          !bin/sh
+          rake test
+        eos
+    File.open('.git/hooks/pre-commit', 'w') {|file|
+        file.write(fileContents)
+    }
+    sh "chmod +x .git/hooks/pre-commit"
+
+    puts 'pre-commit hook installed'
+end
+
+```
+
+
+
+### PowerShell [Invoke-Build](https://github.com/nightroman/Invoke-Build)
+
+```powershell
+# Synopsis: Places a git pre-commit hook that runs the 'test' psake command before each commit. You can skip the pre-commit by typing "git commit -n ..."
+task putOnAHelmet {
+    $cmd = '#!/bin/sh
+#***********
+exec powershell -NoProfile -command "Invoke-Build.ps1 Test"
+#***********
+'
+    $hookPath = ".git/hooks/pre-commit"
+    if( test-path $hookPath ){
+        throw "The git pre-commit hook file already exists. Verify that this command is in there. $cmd"
+    } else {
+        $hookFile = cat "$hookPath.sample" | Out-String
+        $hookFile = $hookFile.Replace('exec git diff-index --check --cached $against --', '#exec git diff-index --check --cached $against --')
+        $hookFile = $hookFile + $cmd
+        sc $hookPath $hookFile
+    }
+    "Pre-commit hook installed!"
+}
+```
+
 
 ### PowerShell [PSake](https://github.com/psake/psake)
 ```powershell
@@ -25,24 +69,4 @@ exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.
 	}
 	echo "Pre-commit hook installed!"
 }
-```
-
-
-### Ruby [Rake](http://rake.rubyforge.org/)
-```ruby
-
-desc 'Places a git pre-commit hook that runs the "rake test" command before each commit. You can skip the pre-commit by typing "git commit -n ...'
-task :putOnAHelmet do
-    fileContents = <<-eos
-          !bin/sh
-          rake test
-        eos
-    File.open('.git/hooks/pre-commit', 'w') {|file|
-        file.write(fileContents)
-    }
-    sh "chmod +x .git/hooks/pre-commit"
-
-    puts 'pre-commit hook installed'
-end
-
 ```
