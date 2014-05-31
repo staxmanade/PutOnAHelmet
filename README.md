@@ -69,8 +69,7 @@ exec powershell -NoProfile -command "&{ import-module C:\Chocolatey\lib\psake.4.
 	if( test-path $hookPath ){
 		throw "The git pre-commit hook file already exists. Verify that this command is in there.$cmd";
 	} else {
-		cp "$hookPath.sample" $hookPath
-		$hookFile = cat $hookPath | Out-String
+		$hookFile = cat "$hookPath.sample" | Out-String
 		$hookFile = $hookFile.Replace('exec git diff-index --check --cached $against --', '#exec git diff-index --check --cached $against --')
 		$hookFile = $hookFile + $cmd
 		sc $hookPath $hookFile
