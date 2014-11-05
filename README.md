@@ -4,6 +4,7 @@ PutOnAHelmet
 Set of build script/tasks that you can use to easily run to install git pre-commit hooks for such things as running tests before your code is committed.
 
 - [Ruby - Rake](#rubyrake)
+- [Gulpjs](#gulpjs)
 - [PowerShell - Invoke-Build](#powershellInvokeBuild)
 - [PowerShell - PSake](#powershellPsake)
 
@@ -28,6 +29,21 @@ end
 
 ```
 
+<a name="gulpjs"/>
+### Gulp [Gulpjs](http://gulpjs.com/)
+```JavaScript
+  gulp.task('putOnAHelmet', function () {
+    var testFileString = '!bin/sh\ngulp test';
+    var fs = require('fs');
+    var preCommitHookFile = '.git/hooks/pre-commit';
+    if(fs.existsSync(preCommitHookFile)) {
+      throw 'pre-commit hook file already exists. Don\'t want to override it (case you have a custom special one in there..).';
+    } else {
+      fs.writeFileSync(preCommitHookFile, testFileString);
+      require('child_process').exec('chmod +x ' + preCommitHookFile);
+    }
+  });
+```
 
 
 <a name="powershellInvokeBuild"/>
