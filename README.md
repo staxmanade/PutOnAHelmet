@@ -10,7 +10,7 @@ Set of build script/tasks that you can use to easily run to install git pre-comm
 - [PowerShell - PSake](#powershellPsake)
 
 <a name="shell"/>
-### Shell [Make]()
+### Shell Make
 ```shell
 # Installs pre commit hook
 installCommitHook:
