@@ -3,11 +3,21 @@ PutOnAHelmet
 
 Set of build script/tasks that you can use to easily run to install git pre-commit hooks for such things as running tests before your code is committed.
 
+- [Shell - Make](#shell)
 - [Ruby - Rake](#rubyrake)
 - [Gulpjs](#gulpjs)
 - [PowerShell - Invoke-Build](#powershellInvokeBuild)
 - [PowerShell - PSake](#powershellPsake)
 
+<a name="shell"/>
+### Shell [Make]()
+```shell
+# Installs pre commit hook
+installCommitHook:
+	echo "#!/bin/sh\nmake test" > .git/hooks/pre-commit
+	chmod a+x .git/hooks/pre-commit
+	echo "Pre Commit hook installed"
+```
 
 <a name="rubyrake"/>
 ### Ruby [Rake](http://rake.rubyforge.org/)
