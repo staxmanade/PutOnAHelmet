@@ -14,9 +14,10 @@ Set of build script/tasks that you can use to easily run to install git pre-comm
 ```shell
 # Installs pre commit hook
 installCommitHook:
-	echo "#!/bin/sh\nmake test" > .git/hooks/pre-commit
-	chmod a+x .git/hooks/pre-commit
-	echo "Pre Commit hook installed"
+	@[ ! -f .git/hooks/pre-commit ] || { echo "pre-commit hook file already exists."; exit 1; }
+	@echo "#!/bin/sh\nmake test" > .git/hooks/pre-commit;
+	@chmod a+x .git/hooks/pre-commit
+	@echo "pre-commit hook installed!"
 ```
 
 <a name="rubyrake"/>
