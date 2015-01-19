@@ -21,7 +21,7 @@ installCommitHook:
 ```
 
 <a name="rubyrake"/>
-### Ruby [Rake](http://rake.rubyforge.org/)
+### Ruby [Rake](https://github.com/ruby/rake)
 ```ruby
 
 desc 'Places a git pre-commit hook that runs the "rake test" command before each commit. You can skip the pre-commit by typing "git commit -n ...'
