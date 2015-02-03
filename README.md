@@ -1,6 +1,8 @@
 PutOnAHelmet
 ============
 
+> By: [@staxmanade](http://staxmanade.com)
+
 Set of build script/tasks that you can use to easily run to install git pre-commit hooks for such things as running tests before your code is committed.
 
 - [Shell - Make](#shell)
